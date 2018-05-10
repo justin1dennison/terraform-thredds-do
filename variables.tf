@@ -8,6 +8,8 @@ variable "ssh_keyname" {
 
 variable "public_keypath" {}
 
+variable "private_keypath" {}
+
 variable "image" {
   default = "ubuntu-16-04-x64"
 }

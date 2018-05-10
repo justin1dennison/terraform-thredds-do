@@ -13,4 +13,16 @@ resource "digitalocean_droplet" "thredds" {
   region   = "${var.region}"
   size     = "${var.size}"
   ssh_keys = ["${digitalocean_ssh_key.thredds-ssh-key.id}"]
+
+  connection {
+    type        = "ssh"
+    user        = "root"
+    private_key = "${file(var.private_keypath)}"
+  }
+
+  provisioner "remote-exec" {
+    scripts = [
+      "scripts/base.sh",
+    ]
+  }
 }
